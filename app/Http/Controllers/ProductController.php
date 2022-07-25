@@ -16,7 +16,9 @@ class ProductController extends Controller
         $products = Product::all();
         // return $products;
 
-        return view('products.index');
+        return view('products.index')->with([
+            'products' => $products,
+        ]);
     }
 
     public function create()
@@ -40,7 +42,10 @@ class ProductController extends Controller
         $product = Product::findOrFail($product);
         // return $product;
 
-        return view('products.show');
+        return view('products.show')->with([
+            'product' => $product,
+            // 'html' => "<h2>Subtitle</h2>",
+        ]);
     }
 
     public function edit($product)
