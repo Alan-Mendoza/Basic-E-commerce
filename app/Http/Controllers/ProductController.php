@@ -58,6 +58,8 @@ class ProductController extends Controller
             ->withInput(request()->all());
         }
         $product = Product::create(request()->all());
+        // Mensaje de exito
+        session()->flash('success', "the new product with ID {$product->id} was created");
         // return redirect()->back();
         // return redirect()->action([ProductController::class, 'index']);
         return redirect()->route('products.index');
