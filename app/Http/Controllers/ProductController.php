@@ -35,6 +35,17 @@ class ProductController extends Controller
         //     'stock' => request()->stock,
         //     'status' => request()->status,
         // ]);
+        // Sesiones
+        // if(request()->status == 'available' && request()->stock == 0) {
+        //     session()->put('error', 'If available must have stock');
+        //     return redirect()->back();
+        // }
+        // session()->forget('error');
+        // Sesion flash
+        if(request()->status == 'available' && request()->stock == 0) {
+            session()->flash('error', 'If available must have stock');
+            return redirect()->back();
+        }
         $product = Product::create(request()->all());
         // return redirect()->back();
         // return redirect()->action([ProductController::class, 'index']);
@@ -80,5 +91,4 @@ class ProductController extends Controller
         $product->delete();
         return redirect()->route('products.index');
     }
-
 }
