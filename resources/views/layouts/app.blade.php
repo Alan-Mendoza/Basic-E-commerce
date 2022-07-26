@@ -76,21 +76,22 @@
         </nav>
 
         <main class="py-4">
-            @if (isset($errors) && $errors->any())
+            <div class="container-fluid">
+                @if (isset($errors) && $errors->any())
                 <div class="alert alert-danger">
                     @foreach ($errors->all() as $error)
                         <li>{{ $error }}</li>
                     @endforeach
                 </div>
-            @endif
+                @endif
 
-            @if (session()->has('success'))
-                <div class="alert alert-success">
-                    {{ session()->get('success') }}
-                </div>
-            @endif
-
-            @yield('content')
+                @if (session()->has('success'))
+                    <div class="alert alert-success">
+                        {{ session()->get('success') }}
+                    </div>
+                @endif
+                @yield('content')
+            </div>
         </main>
     </div>
 </body>

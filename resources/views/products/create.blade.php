@@ -22,13 +22,13 @@
         </div>
         <div class="form-row">
             <label for="status">Status</label>
-            <select class="custom-select" name="status" required>
+            <select class="form-select" name="status" required>
                 <option value="" selected>Select...</option>
                 <option {{ old('status') == 'available' ? 'selected' : '' }} value="available">Available</option>
                 <option {{ old('status') == 'unavailable' ? 'selected' : '' }} value="unavailable">Unavailable</option>
             </select>
         </div>
-        <div class="form-row">
+        <div class="form-row mt-3">
             <button type="submit" class="btn btn-primary btn-lg">Create Product</button>
         </div>
     </form>

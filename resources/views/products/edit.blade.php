@@ -23,12 +23,12 @@
         </div>
         <div class="form-row">
             <label for="status">Status</label>
-            <select class="custom-select" name="status" required>
+            <select class="form-select" name="status" required>
                 <option {{ old('estatus') == 'available' ? 'selected' : ($product->status == 'available' ? 'selected' : '') }} value="available">Available</option>
                 <option {{ old('estatus') == 'unavailable' ? 'selected' : ($product->status == 'unavailable' ? 'selected' : '') }} value="unavailable">Unavailable</option>
             </select>
         </div>
-        <div class="form-row">
+        <div class="form-row mt-3">
             <button type="submit" class="btn btn-primary btn-lg">Edit Product</button>
         </div>
     </form>
