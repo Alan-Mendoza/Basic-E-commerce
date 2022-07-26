@@ -28,6 +28,15 @@ class ProductController extends Controller
 
     public function store()
     {
+        // Validaciones
+        $rules = [
+            'title' => ['required', 'max:255'],
+            'description' => ['required', 'max:1000'],
+            'price' => ['required', 'min:1'],
+            'stock' => ['required', 'min:0'],
+            'status' => ['required', 'in:available, unavailable'],
+        ];
+        request()->validate($rules);
         // $product = Product::create([
         //     'title' => request()->title,
         //     'description' => request()->description,
@@ -79,6 +88,14 @@ class ProductController extends Controller
 
     public function update($product)
     {
+        $rules = [
+            'title' => ['required', 'max:255'],
+            'description' => ['required', 'max:1000'],
+            'price' => ['required', 'min:1'],
+            'stock' => ['required', 'min:0'],
+            'status' => ['required', 'in:available, unavailable'],
+        ];
+        request()->validate($rules);
         // dd('En Update');
         $product = Product::findOrFail($product);
         $product->update(request()->all());
