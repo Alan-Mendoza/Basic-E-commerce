@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ProductRequest;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -33,17 +34,19 @@ class ProductController extends Controller
         return view('products.create');
     }
 
-    public function store()
+    public function store(ProductRequest $request)
     {
         // Validaciones
+        /* FormRequest
         $rules = [
             'title' => ['required', 'max:255'],
             'description' => ['required', 'max:1000'],
             'price' => ['required', 'min:1'],
             'stock' => ['required', 'min:0'],
-            'status' => ['required', 'in:available, unavailable'],
+            'status' => ['required', 'in:available,unavailable'],
         ];
         request()->validate($rules);
+        Fin FormRequest*/
         // $product = Product::create([
         //     'title' => request()->title,
         //     'description' => request()->description,
@@ -58,14 +61,17 @@ class ProductController extends Controller
         // }
         // session()->forget('error');
         // Sesion flash
-        if(request()->status == 'available' && request()->stock == 0) {
+        //LLevamos todo el if a nuestro ProductRequest
+        /*if($request->status == 'available' && $request->stock == 0) {
             // session()->flash('error', 'If available must have stock');
             return redirect()
             ->back()
-            ->withInput(request()->all())
+            ->withInput($request->all())
             ->withErrors('If available must have stock');
-        }
-        $product = Product::create(request()->all());
+        }*/
+        // Diferencias de requets validated()
+        // dd(request()->all(), $request->all(), $request->validated());
+        $product = Product::create($request->validated());
         // Mensaje de exito
         // session()->flash('success', "the new product with ID {$product->id} was created");
         // return redirect()->back();
@@ -100,8 +106,9 @@ class ProductController extends Controller
         ]);
     }
 
-    public function update(Product $product)
+    public function update(ProductRequest $request, Product $product)
     {
+        /* FormRequest
         $rules = [
             'title' => ['required', 'max:255'],
             'description' => ['required', 'max:1000'],
@@ -110,9 +117,10 @@ class ProductController extends Controller
             'status' => ['required', 'in:available,unavailable'],
         ];
         request()->validate($rules);
+        Fin FormRequest */
         // dd('En Update');
         // $product = Product::findOrFail($product);
-        $product->update(request()->all());
+        $product->update($request->validated());
         return redirect()->route('products.index')->withSuccess("the product with ID {$product->id} was edited");
     }
 
