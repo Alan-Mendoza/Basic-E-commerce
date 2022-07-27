@@ -14,7 +14,9 @@ class PaymentFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'amount' => $this->faker->randomFloat($maxDecimals = 2, $min = 15, $max = 500),
+            'payed_at' => $this->faker->dateTimeBetween($startDate = '-1 year', $endDate = 'now', $timeZone = null),
+            // 'order_id' no needed
         ];
     }
 }
