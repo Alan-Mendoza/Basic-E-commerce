@@ -24,8 +24,8 @@
         <div class="form-row">
             <label for="status">Status</label>
             <select class="form-select" name="status" required>
-                <option {{ old('estatus') == 'available' ? 'selected' : ($product->status == 'available' ? 'selected' : '') }} value="available">Available</option>
-                <option {{ old('estatus') == 'unavailable' ? 'selected' : ($product->status == 'unavailable' ? 'selected' : '') }} value="unavailable">Unavailable</option>
+                <option {{ old('status') == 'available' ? 'selected' : ($product->status == 'available' ? 'selected' : '') }} value="available">Available</option>
+                <option {{ old('status') == 'unavailable' ? 'selected' : ($product->status == 'unavailable' ? 'selected' : '') }} value="unavailable">Unavailable</option>
             </select>
         </div>
         <div class="form-row mt-3">
