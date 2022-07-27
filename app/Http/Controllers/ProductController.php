@@ -73,7 +73,7 @@ class ProductController extends Controller
         return redirect()->route('products.index')->withSuccess("the new product with ID {$product->id} was created");
     }
 
-    public function show($product)
+    public function show(Product $product)
     {
         // $product = DB::table('products')->where('id', $product)->get();
         // $product = DB::table('products')->where('id', $product)->first();
@@ -81,7 +81,9 @@ class ProductController extends Controller
         // dd($product);
             // Modelos
         // $product = Product::find($product);
-        $product = Product::findOrFail($product);
+        // Para hacer inyecciones implicitas solo debemos comentar la liena de abajo y en los parametros de nuestras funciones $product, colocar el modelo y esto lo hara todo por nosotros
+        // Solo funciona en las rutas que tengan parametros como ser show edit update y destroy
+        // $product = Product::findOrFail($product);
         // return $product;
 
         return view('products.show')->with([
@@ -90,15 +92,15 @@ class ProductController extends Controller
         ]);
     }
 
-    public function edit($product)
+    public function edit(Product $product)
     {
         // Es necesario resolver lo que se va a editar
         return view('products.edit')->with([
-            'product' => Product::findOrFail($product),
+            'product' => $product, //Product::findOrFail($product),
         ]);
     }
 
-    public function update($product)
+    public function update(Product $product)
     {
         $rules = [
             'title' => ['required', 'max:255'],
@@ -109,14 +111,14 @@ class ProductController extends Controller
         ];
         request()->validate($rules);
         // dd('En Update');
-        $product = Product::findOrFail($product);
+        // $product = Product::findOrFail($product);
         $product->update(request()->all());
         return redirect()->route('products.index')->withSuccess("the product with ID {$product->id} was edited");
     }
 
-    public function destroy($product)
+    public function destroy(Product $product)
     {
-        $product = Product::findOrFail($product);
+        // $product = Product::findOrFail($product);
         $product->delete();
         return redirect()->route('products.index')->withSuccess("the product with ID {$product->id} was delete");
     }
