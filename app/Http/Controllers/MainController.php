@@ -12,8 +12,11 @@ class MainController extends Controller
         // $name = config('app.name');
         // dump($name);
         // dd($name);
+
+        //available() es un scope que se lo encuentra en el modelo Product
+        $products = Product::available()->get(); //Como es un query buldier se debe ejecutar la consulta llamando al metodo get()
         return view('welcome')->with([
-            'products' => Product::all(),
+            'products' => $products,//Product::all(),
         ]);
     }
 }
