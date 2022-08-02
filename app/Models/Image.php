@@ -16,4 +16,9 @@ class Image extends Model
     protected $fillable = [
         'patch',
     ];
+
+    public function imageable()
+    {
+        return $this->morphTo();
+    }
 }
