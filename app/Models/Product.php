@@ -27,12 +27,12 @@ class Product extends Model
 
     public function cards()
     {
-        return $this->belongsToMany(Card::class)->withPivot('quantity');
+        return $this->morphedByMany(Card::class, 'productable')->withPivot('quantity');
     }
 
     public function orders()
     {
-        return $this->belongsToMany(Order::class)->withPivot('quantity');
+        return $this->morphedByMany(Order::class, 'productable')->withPivot('quantity');
     }
 
     public function images()
