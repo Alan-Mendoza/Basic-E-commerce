@@ -7,7 +7,7 @@
         <p class="card-text"><strong>{{ $product->stock }} left</strong></p>
         <form class="d-inline" action="{{ route('products.cards.store', ['product' => $product->id]) }}" method="POST">
             @csrf
-            <button type="submit" class="btn btn-success">Add To Cat</button>
+            <button type="submit" class="btn btn-success">Add To Cart</button>
         </form>
     </div>
 </div>
