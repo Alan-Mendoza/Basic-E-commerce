@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\MainController;
+use App\Http\Controllers\ProductCardController;
 use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
 
@@ -20,6 +21,7 @@ Route::get('/', [MainController::class, 'index'])->name('main');
 // Route::resource('products', ProductController::class)->only(['index', 'show']);
 // Route::resource('products', ProductController::class)->except(['index', 'show']);
 Route::resource('products', ProductController::class);
+Route::resource('products.cards', ProductCardController::class)->only('store', 'destroy');
 
 /*Route::get('products', [ProductController::class, 'index'])->name('products.index');
 Route::get('products/create', [ProductController::class, 'create'])->name('products.create');
