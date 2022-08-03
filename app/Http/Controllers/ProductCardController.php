@@ -36,7 +36,7 @@ class ProductCardController extends Controller
     {
         //
     }
-
+/*
     public function getFromCookieOrCreate()
     {
         $cardId = Cookie::get('card'); // Utilizando el facades de Cookie
@@ -44,5 +44,5 @@ class ProductCardController extends Controller
         // $cardId = cookie('card'); instancia desde la cookie, funciona pero el codigo no es expresivo
         $card = Card::find($cardId);
         return $card ?? Card::create();
-    }
+    } */
 }
